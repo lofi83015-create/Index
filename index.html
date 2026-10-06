@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Toolshelf: Discover the Best AI Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f5f6fb;--surface:#fff;--ink:#101426;--mute:#5d6379;--line:#e3e6f1;--accent:#4f46e5;--accent-ink:#fff;--soft:#eceeff;--free:#0f8a5f;--freemium:#4f46e5;--paid:#b45309;--shadow:0 1px 2px rgba(16,20,38,.05),0 8px 24px rgba(16,20,38,.06);--shadow-h:0 2px 4px rgba(16,20,38,.06),0 16px 36px rgba(79,70,229,.16);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0c16;--surface:#141829;--ink:#eef0fb;--mute:#9aa1bd;--line:#242a42;--accent:#8b8cff;--accent-ink:#0a0c16;--soft:#1c2140;--free:#3ddc9f;--freemium:#9ea0ff;--paid:#f6b14c;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3);--shadow-h:0 2px 4px rgba(0,0,0,.4),0 16px 36px rgba(139,140,255,.18)}}
+:root[data-theme="dark"]{--bg:#0a0c16;--surface:#141829;--ink:#eef0fb;--mute:#9aa1bd;--line:#242a42;--accent:#8b8cff;--accent-ink:#0a0c16;--soft:#1c2140;--free:#3ddc9f;--freemium:#9ea0ff;--paid:#f6b14c;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3);--shadow-h:0 2px 4px rgba(0,0,0,.4),0 16px 36px rgba(139,140,255,.18)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.brand{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;letter-spacing:-.02em;margin:0}
+a{color:inherit;text-decoration:none}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:10px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{font-size:1.35rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.brand i{width:30px;height:30px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);font-style:normal;font-size:1rem}
+.icon-btn{border:1px solid var(--line);background:var(--surface);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.05rem;transition:transform .2s,box-shadow .2s}
+.icon-btn:hover{transform:rotate(18deg);box-shadow:var(--shadow)}
+.hero{padding:56px 0 36px;text-align:center}
+.hero h1{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.02;font-weight:700;max-width:14ch;margin:0 auto}
+.hero p{color:var(--mute);font-size:1.1rem;max-width:46ch;margin:18px auto 30px}
+.search{display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 22px;box-shadow:var(--shadow);transition:box-shadow .2s,border-color .2s}
+.search:focus-within{border-color:var(--accent);box-shadow:var(--shadow-h)}
+.search input{flex:1;min-width:0;border:0;background:transparent;font-size:1.05rem;padding:10px 0;outline:0}
+.search button{border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;border-radius:999px;padding:12px 24px;cursor:pointer}
+.hints{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:999px;padding:6px 14px;font-size:.9rem;cursor:pointer;transition:all .2s}
+.chip:hover{color:var(--ink);border-color:var(--accent);background:var(--soft)}
+section{padding:28px 0}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px}
+.sec-h h2{font-size:1.6rem;font-weight:700}
+.sec-h span{color:var(--mute);font-size:.95rem}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.cat{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px;cursor:pointer;text-align:left;transition:transform .2s,box-shadow .2s,border-color .2s}
+.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow-h);border-color:var(--accent)}
+.cat[aria-pressed="true"]{border-color:var(--accent);background:var(--soft)}
+.cat b{font-weight:600;font-size:.95rem;line-height:1.25}
+.cat .e{font-size:1.4rem}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;align-items:center}
+.bar select{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer}
+.bar .count{margin-left:auto;color:var(--mute);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:18px}
+.card{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-h)}
+.card .row{display:flex;gap:14px;align-items:center}
+.logo{flex:none;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;font:700 1.35rem "Bricolage Grotesque",sans-serif}
+.logo.lg{width:84px;height:84px;border-radius:24px;font-size:2.4rem}
+.card h3{font-size:1.15rem;font-weight:700;line-height:1.2}
+.card h3 a:hover{color:var(--accent)}
+.card small{color:var(--mute)}
+.card p{margin:0;color:var(--mute);font-size:.95rem;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--soft);color:var(--mute)}
+.tag.Free{color:var(--free);background:color-mix(in srgb,var(--free) 14%,transparent)}
+.tag.Freemium{color:var(--freemium);background:color-mix(in srgb,var(--freemium) 14%,transparent)}
+.tag.Paid{color:var(--paid);background:color-mix(in srgb,var(--paid) 14%,transparent)}
+.actions{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:10px 16px;font-weight:600;font-size:.95rem;border:1px solid var(--line);background:transparent;cursor:pointer;transition:all .2s}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);flex:1}
+.btn.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.empty{text-align:center;color:var(--mute);padding:60px 0;grid-column:1/-1}
+.detail{padding:24px 0 40px}
+.back{display:inline-block;margin-bottom:20px;color:var(--mute);font-weight:500}
+.back:hover{color:var(--accent)}
+.d-head{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.d-head h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1}
+.d-box{background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:clamp(20px,4vw,40px);box-shadow:var(--shadow)}
+.d-box>p{font-size:1.1rem;color:var(--mute);max-width:62ch;margin:22px 0}
+.d-meta{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.feat{list-style:none;padding:0;margin:14px 0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.feat li{background:var(--bg);border-radius:14px;padding:14px 16px;display:flex;gap:10px}
+.feat li::before{content:"✓";color:var(--accent);font-weight:700}
+.btn.big{padding:15px 28px;font-size:1.05rem}
+footer{padding:36px 0 48px;color:var(--mute);font-size:.9rem;text-align:center;border-top:1px solid var(--line);margin-top:30px}
+.hide{display:none!important}
+@media (max-width:560px){.search button{padding:12px 16px}.bar .count{width:100%;margin:0}.bar select{flex:1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#/" aria-label="Toolshelf home"><i>✦</i>Toolshelf</a>
+    <button class="icon-btn" id="theme" aria-label="Toggle dark or light theme">◐</button>
+  </header>
+
+  <main id="home">
+    <div class="hero">
+      <h1>Discover the best AI tools</h1>
+      <p>A curated directory of 300+ AI tools for writing, images, video, code, research, productivity and more. Search, filter, compare, and jump straight to the tool.</p>
+      <form class="search" role="search" id="sform">
+        <input id="q" type="search" placeholder="Search by name, category or use case" aria-label="Search AI tools" autocomplete="off">
+        <button type="submit">Search</button>
+      </form>
+      <div class="hints" id="hints"></div>
+    </div>
+
+    <section>
+      <div class="sec-h"><h2>Browse by category</h2></div>
+      <div class="cats" id="cats"></div>
+    </section>
+
+    <section id="tools">
+      <div class="sec-h"><h2 id="gridTitle">All tools</h2></div>
+      <div class="bar">
+        <select id="fcat" aria-label="Category"></select>
+        <select id="fprice" aria-label="Pricing"><option value="">Any pricing</option><option>Free</option><option>Freemium</option><option>Paid</option></select>
+        <select id="fsort" aria-label="Sort"><option value="pop">Most popular</option><option value="new">Newest</option><option value="az">A to Z</option></select>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <main id="detail" class="detail hide"></main>
+
+  <footer>Toolshelf lists tools for discovery only. Pricing and features change, so check each tool's site for the latest.</footer>
+</div>
+
+<script>
+// name | url | category | pricing | popularity | added (higher = newer) | description | features | color
+var D=[
+["ChatGPT","https://chatgpt.com","Chatbots","Freemium",100,60,"OpenAI's general-purpose assistant for answering questions, writing, analysis and brainstorming.","Conversational answers and follow-ups|File and image understanding|Voice conversations|Custom GPTs for repeat tasks","#10a37f"],
+["Claude","https://claude.ai","Chatbots","Freemium",96,66,"Anthropic's assistant, known for careful writing, long documents and coding help.","Long-document analysis|Strong writing and editing|Code generation and review|Projects to keep context together","#d97706"],
+["Gemini","https://gemini.google.com","Chatbots","Freemium",92,64,"Google's assistant, connected to Search and Google apps.","Works with Gmail, Docs and Drive|Image and video understanding|Deep research mode|Live voice chat","#4285f4"],
+["Microsoft Copilot","https://copilot.microsoft.com","Chatbots","Free",84,52,"A free assistant from Microsoft for chat, search and image creation.","Free web-connected chat|Image generation|Voice mode|Works across Windows and Edge","#0f6cbd"],
+["Perplexity","https://www.perplexity.ai","Research","Freemium",90,58,"An answer engine that searches the web and shows its sources.","Cited answers|Follow-up questions|Focus modes for academic or video sources|Pro search for deeper queries","#1fb8cd"],
+["Elicit","https://elicit.com","Research","Freemium",66,40,"Finds and summarizes academic papers to speed up literature reviews.","Search across research papers|Structured data extraction|Paper summaries|Exportable tables","#6d5dfc"],
+["Consensus","https://consensus.app","Research","Freemium",64,44,"A search engine that surfaces what peer-reviewed research says about a question.","Evidence-based answers|Consensus meter|Study snapshots|Citation links","#0ea5a4"],
+["NotebookLM","https://notebooklm.google","Education","Free",82,62,"Upload your notes and sources, then ask questions or generate study guides and audio overviews.","Answers grounded in your sources|Audio overviews|Study guides and FAQs|Free to use","#3b82f6"],
+["Socratic","https://socratic.org","Education","Free",48,20,"Google's homework helper that explains problems step by step.","Photo-based question search|Step-by-step explanations|Covers math, science and more|Free mobile app","#7c3aed"],
+["Grammarly","https://www.grammarly.com","AI Writing","Freemium",88,30,"Checks grammar, clarity and tone, and rewrites text as you type.","Grammar and spell check|Tone suggestions|Rewrite and generate text|Browser and app extensions","#15a76d"],
+["Writesonic","https://writesonic.com","AI Writing","Freemium",62,36,"Drafts blog posts, ads and landing page copy from a short brief.","Long-form article drafting|SEO guidance|Brand voice settings|Ready-made templates","#7a5af8"],
+["Jasper","https://www.jasper.ai","Marketing","Paid",70,34,"A marketing-focused writing platform built for on-brand content at scale.","Brand voice training|Campaign copy templates|Team collaboration|Content pipelines","#e11d74"],
+["Canva","https://www.canva.com","Marketing","Freemium",94,42,"A design tool with AI features for social posts, presentations and brand assets.","Magic Write and Magic Design|Thousands of templates|Background remover|Easy sharing and export","#00a3bf"],
+["Midjourney","https://www.midjourney.com","Image Generation","Paid",93,38,"Creates detailed, stylized images from text prompts.","High-quality artistic output|Style and aspect controls|Image variations and upscaling|Web editor","#1e293b"],
+["Leonardo.Ai","https://leonardo.ai","Image Generation","Freemium",72,46,"An image generator with fine controls for game art, product shots and concepts.","Multiple image models|Canvas editing|Model fine-tuning|Daily free credits","#8b5cf6"],
+["Adobe Firefly","https://firefly.adobe.com","Image Generation","Freemium",78,50,"Adobe's image and video generator, trained for commercial use.","Text to image and video|Generative fill and expand|Works with Photoshop|Commercial-use focus","#e8452c"],
+["Runway","https://runwayml.com","Video","Freemium",80,56,"Generates and edits video from text, images or other clips.","Text and image to video|Motion and camera controls|Video editing tools|Browser-based editor","#0b0f1a"],
+["Pika","https://pika.art","Video","Freemium",60,48,"Turns prompts and images into short, stylized videos.","Text and image to video|Effects and modifiers|Lip sync|Quick social-ready clips","#f97316"],
+["HeyGen","https://www.heygen.com","Video","Freemium",68,54,"Creates videos with AI avatars that speak your script in many languages.","Realistic AI avatars|Video translation|Script-to-video|Custom avatars","#2563eb"],
+["Descript","https://www.descript.com","Audio","Freemium",65,32,"Edit audio and video by editing the transcript, with AI cleanup tools.","Edit by editing text|Studio Sound cleanup|Filler word removal|Screen recording","#7c3aed"],
+["ElevenLabs","https://elevenlabs.io","Audio","Freemium",86,53,"Lifelike text-to-speech and voice tools for narration, dubbing and apps.","Natural voices in many languages|Voice cloning|Dubbing|API for developers","#111827"],
+["Suno","https://suno.com","Audio","Freemium",79,57,"Makes full songs with vocals from a text description.","Song from a prompt|Custom lyrics|Multiple genres|Download and share","#ec4899"],
+["Notion AI","https://www.notion.com/product/ai","Productivity","Paid",83,45,"AI inside Notion for summarizing notes, drafting pages and searching your workspace.","Summaries and action items|Draft and rewrite in place|Q&A across your workspace|Auto-filled databases","#292524"],
+["Otter.ai","https://otter.ai","Productivity","Freemium",74,28,"Records meetings and produces live transcripts, summaries and action items.","Live transcription|Automatic summaries|Calendar integration|Searchable archive","#2563eb"],
+["Cursor","https://cursor.com","Coding","Freemium",91,65,"A code editor built around AI that can edit across your whole project.","Chat with your codebase|Multi-file edits|Autocomplete|Familiar VS Code feel","#18181b"],
+["GitHub Copilot","https://github.com/features/copilot","Coding","Freemium",89,41,"Code suggestions and chat inside your editor and on GitHub.","Inline code completion|Chat in the IDE|Pull request summaries|Works in most editors","#24292f"],
+["Replit","https://replit.com","Coding","Freemium",75,55,"Build and host apps from a browser, with an AI agent that writes the code.","Build apps from a prompt|Instant hosting|Browser-based editor|Many languages","#f26207"],
+["Hugging Face","https://huggingface.co","Coding","Free",77,24,"The hub for open AI models, datasets and demo apps.","Thousands of open models|Datasets and Spaces|Free to browse and try|Active community","#f5a623"],
+["Gamma","https://gamma.app","Business","Freemium",76,59,"Generates presentations, docs and simple websites from an outline or prompt.","Prompt to slide deck|Clean auto-layout|Easy sharing|Export to PDF or PowerPoint","#6366f1"],
+["Zapier","https://zapier.com","Business","Freemium",73,26,"Connects your apps and automates repetitive work, with AI helping build the steps.","Thousands of app integrations|Describe a workflow in plain language|AI actions|No code needed","#ff4a00"]
+,
+["Grok", "https://grok.com", "Chatbots", "Paid", 90, 58, "Grok is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#6626db"],
+["DeepSeek", "https://chat.deepseek.com", "Chatbots", "Free", 79, 62, "DeepSeek is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#264d9b"],
+["Qwen Chat", "https://chat.qwen.ai", "Chatbots", "Paid", 80, 37, "Qwen Chat is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#e18ee2"],
+["Mistral Le Chat", "https://chat.mistral.ai", "Chatbots", "Paid", 79, 58, "Mistral Le Chat is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#d77e93"],
+["Poe", "https://poe.com", "Chatbots", "Paid", 83, 64, "Poe is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#eded71"],
+["Character.AI", "https://character.ai", "Chatbots", "Freemium", 70, 42, "Character.AI is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#4f4c17"],
+["Pi", "https://pi.ai", "Chatbots", "Free", 67, 56, "Pi is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#127125"],
+["Replika", "https://replika.com", "Chatbots", "Free", 72, 41, "Replika is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#5a9f12"],
+["Kimi", "https://kimi.com", "Chatbots", "Freemium", 97, 60, "Kimi is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#0760f9"],
+["Doubao", "https://www.doubao.com", "Chatbots", "Free", 90, 68, "Doubao is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#b42f61"],
+["YouChat", "https://you.com", "Chatbots", "Paid", 95, 52, "YouChat is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#ca0e4d"],
+["Phind", "https://www.phind.com", "Chatbots", "Freemium", 60, 42, "Phind is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#b009b3"],
+["Meta AI", "https://www.meta.ai", "Chatbots", "Paid", 61, 37, "Meta AI is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#23de8a"],
+["HuggingChat", "https://huggingface.co/chat", "Chatbots", "Freemium", 94, 36, "HuggingChat is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#ebc3b1"],
+["DuckDuckGo AI Chat", "https://duckduckgo.com", "Chatbots", "Freemium", 90, 51, "DuckDuckGo AI Chat is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#0272d4"],
+["Monica", "https://monica.im", "Chatbots", "Free", 65, 35, "Monica is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#09084c"],
+["Merlin", "https://www.getmerlin.in", "Chatbots", "Paid", 84, 67, "Merlin is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#511484"],
+["Sider", "https://sider.ai", "Chatbots", "Paid", 82, 49, "Sider is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#8d6386"],
+["Jan", "https://jan.ai", "Chatbots", "Freemium", 78, 63, "Jan is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#e68564"],
+["Chatbase", "https://www.chatbase.co", "Chatbots", "Freemium", 64, 69, "Chatbase is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#e6b102"],
+["Coze", "https://www.coze.com", "Chatbots", "Freemium", 63, 66, "Coze is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#afbb9b"],
+["FlowGPT", "https://flowgpt.com", "Chatbots", "Freemium", 68, 69, "FlowGPT is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#3109de"],
+["Botpress", "https://botpress.com", "Chatbots", "Paid", 82, 55, "Botpress is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#a5d70c"],
+["You.com", "https://you.com", "Chatbots", "Paid", 84, 70, "You.com is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#c2af77"],
+["Llama Chat", "https://www.llama.com", "Chatbots", "Free", 96, 62, "Llama Chat is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#4cdc5b"],
+["Poe Assistant", "https://poe.com", "Chatbots", "Paid", 88, 49, "Poe Assistant is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#bff4e6"],
+["Brave Leo", "https://brave.com/leo", "Chatbots", "Free", 72, 53, "Brave Leo is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#b0adda"],
+["Amazon Q", "https://aws.amazon.com/q/", "Chatbots", "Freemium", 55, 39, "Amazon Q is an AI assistant for conversation, research and everyday tasks.", "AI chat and assistance|Natural-language interaction|Multi-purpose workflows", "#5c8e58"],
+["Ideogram", "https://ideogram.ai", "Image Generation", "Free", 75, 56, "Ideogram helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#87e8f5"],
+["FLUX", "https://blackforestlabs.ai", "Image Generation", "Freemium", 81, 51, "FLUX helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#e09824"],
+["Stable Diffusion", "https://stability.ai", "Image Generation", "Paid", 73, 46, "Stable Diffusion helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#14ff93"],
+["Playground", "https://playground.com", "Image Generation", "Paid", 82, 58, "Playground helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#a5fedb"],
+["Bing Image Creator", "https://www.bing.com/images/create", "Image Generation", "Free", 71, 59, "Bing Image Creator helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#912570"],
+["Recraft", "https://www.recraft.ai", "Image Generation", "Free", 65, 53, "Recraft helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#adde6a"],
+["Krea", "https://www.krea.ai", "Image Generation", "Paid", 96, 58, "Krea helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#10497b"],
+["Magnific", "https://magnific.ai", "Image Generation", "Freemium", 83, 51, "Magnific helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#ffaf84"],
+["Photoroom", "https://www.photoroom.com", "Image Generation", "Free", 72, 59, "Photoroom helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#ecb3f8"],
+["Clipdrop", "https://clipdrop.co", "Image Generation", "Free", 67, 59, "Clipdrop helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#9acb3c"],
+["Remove.bg", "https://www.remove.bg", "Image Generation", "Free", 66, 38, "Remove.bg helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#4388bb"],
+["Cleanup.pictures", "https://cleanup.pictures", "Image Generation", "Paid", 82, 64, "Cleanup.pictures helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#80b9e5"],
+["Fotor AI", "https://www.fotor.com", "Image Generation", "Freemium", 74, 54, "Fotor AI helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#351973"],
+["Picsart", "https://picsart.com", "Image Generation", "Free", 71, 50, "Picsart helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#d2acfb"],
+["Pixlr", "https://pixlr.com", "Image Generation", "Free", 88, 35, "Pixlr helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#29478c"],
+["NightCafe", "https://nightcafe.studio", "Image Generation", "Free", 81, 62, "NightCafe helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#bd9f93"],
+["Craiyon", "https://www.craiyon.com", "Image Generation", "Freemium", 63, 45, "Craiyon helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#f92ad6"],
+["Scenario", "https://www.scenario.com", "Image Generation", "Paid", 67, 37, "Scenario helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#54861e"],
+["Stockimg.ai", "https://stockimg.ai", "Image Generation", "Paid", 58, 64, "Stockimg.ai helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#bb39e5"],
+["getimg.ai", "https://getimg.ai", "Image Generation", "Freemium", 66, 54, "getimg.ai helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#ed86bf"],
+["Tensor.Art", "https://tensor.art", "Image Generation", "Freemium", 75, 66, "Tensor.Art helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#d56c73"],
+["SeaArt", "https://www.seaart.ai", "Image Generation", "Paid", 71, 49, "SeaArt helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#ad6de6"],
+["Lexica", "https://lexica.art", "Image Generation", "Free", 96, 41, "Lexica helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#0e011e"],
+["DreamStudio", "https://dreamstudio.ai", "Image Generation", "Paid", 87, 67, "DreamStudio helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#8060e4"],
+["Artbreeder", "https://www.artbreeder.com", "Image Generation", "Freemium", 76, 36, "Artbreeder helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#140071"],
+["Mage", "https://www.mage.space", "Image Generation", "Paid", 97, 67, "Mage helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#8eb9bc"],
+["Topaz Photo AI", "https://www.topazlabs.com/topaz-photo-ai", "Image Generation", "Free", 83, 41, "Topaz Photo AI helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#198f2a"],
+["Upscayl", "https://upscayl.org", "Image Generation", "Free", 87, 65, "Upscayl helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#7805fa"],
+["Leonardo AI", "https://leonardo.ai", "Image Generation", "Freemium", 61, 66, "Leonardo AI helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#97292b"],
+["Canva AI", "https://www.canva.com/ai-image-generator", "Image Generation", "Free", 70, 68, "Canva AI helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#0675e1"],
+["Microsoft Designer", "https://designer.microsoft.com", "Image Generation", "Freemium", 87, 69, "Microsoft Designer helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#e5599a"],
+["Ideogram Canvas", "https://ideogram.ai", "Image Generation", "Paid", 66, 40, "Ideogram Canvas helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#6ac8f5"],
+["Dreamina", "https://dreamina.capcut.com", "Image Generation", "Free", 57, 47, "Dreamina helps create, edit or enhance images with AI.", "AI image creation or editing|Prompt-based workflows|Creative controls", "#453f18"],
+["Sora", "https://sora.com", "Video", "Paid", 67, 43, "Sora provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#478958"],
+["Veo", "https://deepmind.google/models/veo", "Video", "Freemium", 93, 45, "Veo provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#07886e"],
+["Kling AI", "https://klingai.com", "Video", "Freemium", 61, 66, "Kling AI provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#bc9977"],
+["Luma Dream Machine", "https://lumalabs.ai/dream-machine", "Video", "Freemium", 72, 51, "Luma Dream Machine provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#51d348"],
+["Hailuo AI", "https://hailuoai.video", "Video", "Paid", 84, 37, "Hailuo AI provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#abd59e"],
+["PixVerse", "https://pixverse.ai", "Video", "Freemium", 83, 57, "PixVerse provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#518ef6"],
+["Vidu", "https://www.vidu.com", "Video", "Free", 65, 44, "Vidu provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#cbeb8d"],
+["Haiper", "https://haiper.ai", "Video", "Paid", 62, 58, "Haiper provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#5fc6c3"],
+["Genmo", "https://www.genmo.ai", "Video", "Paid", 90, 70, "Genmo provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#1076cf"],
+["Kaiber", "https://kaiber.ai", "Video", "Paid", 83, 64, "Kaiber provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#9c08ed"],
+["Viggle", "https://viggle.ai", "Video", "Free", 94, 53, "Viggle provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#5654fa"],
+["Synthesia", "https://www.synthesia.io", "Video", "Freemium", 84, 42, "Synthesia provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#3eb6e7"],
+["D-ID", "https://www.d-id.com", "Video", "Paid", 86, 55, "D-ID provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#0c1544"],
+["Colossyan", "https://www.colossyan.com", "Video", "Paid", 73, 43, "Colossyan provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#ea2f24"],
+["Elai", "https://elai.io", "Video", "Freemium", 77, 39, "Elai provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#c34eac"],
+["Tavus", "https://www.tavus.io", "Video", "Paid", 86, 55, "Tavus provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#5d4460"],
+["Captions", "https://www.captions.ai", "Video", "Free", 60, 38, "Captions provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#72f7d7"],
+["CapCut", "https://www.capcut.com", "Video", "Freemium", 74, 60, "CapCut provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#e9bae9"],
+["InVideo AI", "https://invideo.io", "Video", "Paid", 86, 61, "InVideo AI provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#d8c87e"],
+["VEED", "https://www.veed.io", "Video", "Freemium", 77, 60, "VEED provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#fe5045"],
+["OpusClip", "https://www.opus.pro", "Video", "Free", 63, 65, "OpusClip provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#57e41e"],
+["Vizard", "https://vizard.ai", "Video", "Free", 61, 65, "Vizard provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#b3cad2"],
+["Submagic", "https://www.submagic.co", "Video", "Freemium", 63, 39, "Submagic provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#c61270"],
+["Klap", "https://klap.app", "Video", "Freemium", 59, 63, "Klap provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#02bb70"],
+["Wisecut", "https://www.wisecut.video", "Video", "Free", 65, 41, "Wisecut provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#1661ca"],
+["Pictory", "https://pictory.ai", "Video", "Paid", 90, 55, "Pictory provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#cd6844"],
+["Fliki", "https://fliki.ai", "Video", "Paid", 59, 70, "Fliki provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#e9ee6b"],
+["Hedra", "https://www.hedra.com", "Video", "Free", 75, 41, "Hedra provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#00607e"],
+["Rask AI", "https://www.rask.ai", "Video", "Freemium", 67, 36, "Rask AI provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#f023c5"],
+["Vidnoz", "https://www.vidnoz.com", "Video", "Freemium", 86, 69, "Vidnoz provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#b4da86"],
+["Arcads", "https://www.arcads.ai", "Video", "Freemium", 77, 54, "Arcads provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#25f1e3"],
+["Creatify", "https://creatify.ai", "Video", "Free", 62, 38, "Creatify provides AI-powered video creation, editing or transformation tools.", "AI video creation or editing|Automated production tools|Creator workflows", "#67af1f"],
+["Murf AI", "https://murf.ai", "Audio", "Freemium", 91, 39, "Murf AI offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#a854dc"],
+["PlayHT", "https://play.ht", "Audio", "Paid", 58, 49, "PlayHT offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#ec7a22"],
+["LOVO", "https://lovo.ai", "Audio", "Paid", 65, 49, "LOVO offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#6765e6"],
+["Resemble AI", "https://www.resemble.ai", "Audio", "Paid", 93, 64, "Resemble AI offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#b508e9"],
+["WellSaid Labs", "https://wellsaidlabs.com", "Audio", "Free", 65, 47, "WellSaid Labs offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#561d44"],
+["Speechify", "https://speechify.com", "Audio", "Freemium", 76, 45, "Speechify offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#6f4a1a"],
+["PlayAI", "https://play.ai", "Audio", "Free", 85, 38, "PlayAI offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#763737"],
+["Cartesia", "https://cartesia.ai", "Audio", "Free", 64, 62, "Cartesia offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#d590db"],
+["Deepgram", "https://deepgram.com", "Audio", "Free", 59, 68, "Deepgram offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#9bc6fd"],
+["AssemblyAI", "https://www.assemblyai.com", "Audio", "Freemium", 93, 36, "AssemblyAI offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#8ea611"],
+["Whisper", "https://openai.com/research/whisper", "Audio", "Paid", 95, 70, "Whisper offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#efbe17"],
+["Udio", "https://www.udio.com", "Audio", "Freemium", 75, 48, "Udio offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#d25149"],
+["Stable Audio", "https://www.stableaudio.com", "Audio", "Free", 89, 59, "Stable Audio offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#d3cac4"],
+["AIVA", "https://www.aiva.ai", "Audio", "Free", 67, 62, "AIVA offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#e9a73b"],
+["Soundraw", "https://soundraw.io", "Audio", "Paid", 58, 37, "Soundraw offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#8a3b2a"],
+["Boomy", "https://boomy.com", "Audio", "Freemium", 72, 39, "Boomy offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#4a8ad4"],
+["Beatoven.ai", "https://www.beatoven.ai", "Audio", "Free", 96, 59, "Beatoven.ai offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#d4d4b0"],
+["Mubert", "https://mubert.com", "Audio", "Free", 81, 65, "Mubert offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#47c532"],
+["LALAL.AI", "https://www.lalal.ai", "Audio", "Paid", 66, 43, "LALAL.AI offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#62ca98"],
+["Voicemod", "https://www.voicemod.net", "Audio", "Paid", 65, 49, "Voicemod offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#189f92"],
+["Kits AI", "https://www.kits.ai", "Audio", "Free", 69, 65, "Kits AI offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#9b52f6"],
+["Musicfy", "https://musicfy.lol", "Audio", "Freemium", 81, 66, "Musicfy offers AI tools for voice, audio, music or sound creation.", "AI audio generation or editing|Voice or music workflows|Creator tools", "#e4cbfb"],
+["QuillBot", "https://quillbot.com", "AI Writing", "Freemium", 80, 48, "QuillBot helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#576385"],
+["Wordtune", "https://www.wordtune.com", "AI Writing", "Paid", 67, 37, "Wordtune helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#1cc77e"],
+["ProWritingAid", "https://prowritingaid.com", "AI Writing", "Free", 82, 68, "ProWritingAid helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#8a4785"],
+["LanguageTool", "https://languagetool.org", "AI Writing", "Free", 69, 47, "LanguageTool helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#cfd830"],
+["Hemingway Editor", "https://hemingwayapp.com", "AI Writing", "Paid", 68, 61, "Hemingway Editor helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#b3da22"],
+["Sudowrite", "https://sudowrite.com", "AI Writing", "Freemium", 82, 36, "Sudowrite helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#53bff9"],
+["NovelAI", "https://novelai.net", "AI Writing", "Freemium", 67, 66, "NovelAI helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#80207b"],
+["Anyword", "https://www.anyword.com", "AI Writing", "Paid", 59, 55, "Anyword helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#47c114"],
+["Rytr", "https://rytr.me", "AI Writing", "Freemium", 92, 63, "Rytr helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#55b3b8"],
+["Copy.ai", "https://www.copy.ai", "AI Writing", "Paid", 69, 55, "Copy.ai helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#99c02c"],
+["HIX.AI", "https://hix.ai", "AI Writing", "Paid", 91, 67, "HIX.AI helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#965bdc"],
+["WordHero", "https://wordhero.co", "AI Writing", "Freemium", 91, 60, "WordHero helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#bf4aed"],
+["Scalenut", "https://www.scalenut.com", "AI Writing", "Paid", 92, 64, "Scalenut helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#f08825"],
+["Frase", "https://www.frase.io", "AI Writing", "Free", 69, 47, "Frase helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#f12c54"],
+["LongShot AI", "https://www.longshot.ai", "AI Writing", "Free", 84, 38, "LongShot AI helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#532edb"],
+["TextCortex", "https://textcortex.com", "AI Writing", "Paid", 84, 58, "TextCortex helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#c0144b"],
+["HyperWrite", "https://www.hyperwriteai.com", "AI Writing", "Paid", 58, 55, "HyperWrite helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#fb68c4"],
+["Jenni AI", "https://jenni.ai", "AI Writing", "Paid", 72, 67, "Jenni AI helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#caec44"],
+["Paperpal", "https://paperpal.com", "AI Writing", "Paid", 66, 64, "Paperpal helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#81a451"],
+["Trinka", "https://www.trinka.ai", "AI Writing", "Paid", 87, 70, "Trinka helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#1af117"],
+["DeepL Write", "https://www.deepl.com/write", "AI Writing", "Freemium", 91, 42, "DeepL Write helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#3fe51b"],
+["Simplified", "https://simplified.com", "AI Writing", "Paid", 74, 67, "Simplified helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#40b9b0"],
+["Peppertype", "https://www.peppertype.ai", "AI Writing", "Free", 61, 53, "Peppertype helps write, rewrite, edit or optimize text and content.", "AI drafting and rewriting|Content improvement|Multiple writing use cases", "#3edcc6"],
+["Fireflies.ai", "https://fireflies.ai", "Productivity", "Paid", 68, 67, "Fireflies.ai uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#00329c"],
+["Fathom", "https://fathom.video", "Productivity", "Free", 82, 59, "Fathom uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#795360"],
+["Read AI", "https://www.read.ai", "Productivity", "Freemium", 80, 39, "Read AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#5cfe24"],
+["Notta", "https://www.notta.ai", "Productivity", "Freemium", 93, 48, "Notta uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#54e779"],
+["Mem", "https://mem.ai", "Productivity", "Freemium", 84, 36, "Mem uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#dba555"],
+["Tana", "https://tana.inc", "Productivity", "Free", 77, 59, "Tana uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#7bbdfc"],
+["Reflect", "https://reflect.app", "Productivity", "Freemium", 94, 69, "Reflect uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#74de3e"],
+["Taskade", "https://www.taskade.com", "Productivity", "Paid", 83, 70, "Taskade uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#891e63"],
+["ClickUp AI", "https://clickup.com/ai", "Productivity", "Free", 61, 44, "ClickUp AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#d548c9"],
+["Asana Intelligence", "https://asana.com/ai", "Productivity", "Paid", 82, 55, "Asana Intelligence uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#ffe1bc"],
+["Monday AI", "https://monday.com/ai", "Productivity", "Paid", 87, 52, "Monday AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#efd28d"],
+["Linear", "https://linear.app", "Productivity", "Free", 72, 62, "Linear uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#32a843"],
+["Coda AI", "https://coda.io/product/ai", "Productivity", "Freemium", 67, 39, "Coda AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#312e50"],
+["Airtable AI", "https://www.airtable.com/ai", "Productivity", "Paid", 97, 55, "Airtable AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#7fca18"],
+["Reclaim AI", "https://reclaim.ai", "Productivity", "Paid", 94, 40, "Reclaim AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#580121"],
+["Motion", "https://www.usemotion.com", "Productivity", "Freemium", 71, 51, "Motion uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#822658"],
+["Clockwise", "https://www.getclockwise.com", "Productivity", "Freemium", 56, 69, "Clockwise uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#ba360a"],
+["Sunsama", "https://www.sunsama.com", "Productivity", "Free", 90, 35, "Sunsama uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#a0e090"],
+["Todoist AI", "https://todoist.com", "Productivity", "Freemium", 92, 57, "Todoist AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#16ea1e"],
+["Miro AI", "https://miro.com/ai", "Productivity", "Freemium", 85, 66, "Miro AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#0d1b4b"],
+["Whimsical AI", "https://whimsical.com/ai", "Productivity", "Free", 96, 68, "Whimsical AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#f9ca89"],
+["Lucidchart AI", "https://www.lucidchart.com", "Productivity", "Free", 65, 38, "Lucidchart AI uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#51c01b"],
+["Readwise Reader", "https://readwise.io/read", "Productivity", "Free", 84, 62, "Readwise Reader uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#9ea49b"],
+["Glean", "https://www.glean.com", "Productivity", "Paid", 83, 61, "Glean uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#967862"],
+["Guru", "https://www.getguru.com", "Productivity", "Freemium", 78, 36, "Guru uses AI to help organize work, notes, meetings, tasks or workflows.", "AI-assisted workflows|Automation or organization|Workspace integrations", "#45d909"],
+["Windsurf", "https://windsurf.com", "Coding", "Free", 90, 50, "Windsurf provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#549ab3"],
+["v0", "https://v0.dev", "Coding", "Free", 87, 53, "v0 provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#9abcde"],
+["Bolt.new", "https://bolt.new", "Coding", "Paid", 76, 70, "Bolt.new provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#cbe50b"],
+["Lovable", "https://lovable.dev", "Coding", "Free", 71, 56, "Lovable provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#9513bd"],
+["Tabnine", "https://www.tabnine.com", "Coding", "Free", 82, 59, "Tabnine provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#481fbc"],
+["CodeRabbit", "https://www.coderabbit.ai", "Coding", "Paid", 57, 49, "CodeRabbit provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#9b809a"],
+["Qodo", "https://www.qodo.ai", "Coding", "Freemium", 66, 66, "Qodo provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#337987"],
+["Cody", "https://sourcegraph.com/cody", "Coding", "Freemium", 84, 36, "Cody provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#a66db9"],
+["Warp", "https://www.warp.dev", "Coding", "Free", 78, 35, "Warp provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#54ebc8"],
+["Zed", "https://zed.dev", "Coding", "Freemium", 57, 45, "Zed provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#039c82"],
+["Augment Code", "https://www.augmentcode.com", "Coding", "Freemium", 56, 39, "Augment Code provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#2b12fc"],
+["Trae", "https://www.trae.ai", "Coding", "Paid", 97, 49, "Trae provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#b53112"],
+["Devin", "https://devin.ai", "Coding", "Paid", 92, 40, "Devin provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#192ac1"],
+["Supermaven", "https://supermaven.com", "Coding", "Free", 74, 53, "Supermaven provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#9b1ebe"],
+["Pieces", "https://pieces.app", "Coding", "Paid", 64, 64, "Pieces provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#2785cd"],
+["Cline", "https://cline.bot", "Coding", "Freemium", 71, 60, "Cline provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#d843bd"],
+["Aider", "https://aider.chat", "Coding", "Paid", 59, 46, "Aider provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#fa0c67"],
+["Continue", "https://www.continue.dev", "Coding", "Freemium", 67, 51, "Continue provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#a0bfb8"],
+["Roo Code", "https://roocode.com", "Coding", "Freemium", 95, 45, "Roo Code provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#c94696"],
+["OpenHands", "https://www.all-hands.dev", "Coding", "Paid", 64, 58, "OpenHands provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#75c00b"],
+["Kilo Code", "https://kilocode.ai", "Coding", "Freemium", 58, 42, "Kilo Code provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#fb79bb"],
+["Pythagora", "https://pythagora.ai", "Coding", "Freemium", 55, 69, "Pythagora provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#426166"],
+["Mutable AI", "https://mutable.ai", "Coding", "Paid", 73, 55, "Mutable AI provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#4e6a04"],
+["Amazon Q Developer", "https://aws.amazon.com/q/developer", "Coding", "Paid", 56, 67, "Amazon Q Developer provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#24401c"],
+["Gemini Code Assist", "https://cloud.google.com/gemini/docs/codeassist", "Coding", "Free", 77, 68, "Gemini Code Assist provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#eed6e5"],
+["Blackbox AI", "https://www.blackbox.ai", "Coding", "Paid", 92, 49, "Blackbox AI provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#9f1d12"],
+["Replit Agent", "https://replit.com/ai", "Coding", "Free", 81, 56, "Replit Agent provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#55a439"],
+["Firebase Studio", "https://firebase.studio", "Coding", "Free", 86, 47, "Firebase Studio provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#eb9578"],
+["Google AI Studio", "https://aistudio.google.com", "Coding", "Freemium", 91, 60, "Google AI Studio provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#cd3489"],
+["OpenAI API", "https://platform.openai.com", "Coding", "Free", 77, 59, "OpenAI API provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#7b3f00"],
+["Anthropic API", "https://console.anthropic.com", "Coding", "Paid", 85, 49, "Anthropic API provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#4e2486"],
+["Google Gemini API", "https://ai.google.dev", "Coding", "Freemium", 92, 42, "Google Gemini API provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#36f22f"],
+["OpenRouter", "https://openrouter.ai", "Coding", "Paid", 62, 37, "OpenRouter provides AI assistance for software development and technical workflows.", "Code generation and assistance|Developer workflows|Project-aware AI tools", "#a06076"],
+["Semantic Scholar", "https://www.semanticscholar.org", "Research", "Freemium", 69, 39, "Semantic Scholar helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#693124"],
+["ResearchRabbit", "https://www.researchrabbit.ai", "Research", "Freemium", 58, 60, "ResearchRabbit helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#1d7421"],
+["Scite", "https://scite.ai", "Research", "Free", 78, 59, "Scite helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#9dfecc"],
+["SciSpace", "https://scispace.com", "Research", "Freemium", 76, 48, "SciSpace helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#20c9d1"],
+["Scholarcy", "https://www.scholarcy.com", "Research", "Free", 70, 50, "Scholarcy helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#4b2937"],
+["Connected Papers", "https://www.connectedpapers.com", "Research", "Freemium", 89, 45, "Connected Papers helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#f634ba"],
+["Litmaps", "https://www.litmaps.com", "Research", "Free", 70, 44, "Litmaps helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#caf1cd"],
+["Explainpaper", "https://www.explainpaper.com", "Research", "Paid", 95, 64, "Explainpaper helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#4850d5"],
+["ChatPDF", "https://www.chatpdf.com", "Research", "Freemium", 95, 45, "ChatPDF helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#0a71e2"],
+["AskYourPDF", "https://askyourpdf.com", "Research", "Paid", 59, 52, "AskYourPDF helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#8dd2a1"],
+["Humata", "https://www.humata.ai", "Research", "Freemium", 81, 60, "Humata helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#6f53dd"],
+["Julius AI", "https://julius.ai", "Research", "Freemium", 97, 60, "Julius AI helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#f54919"],
+["Exa", "https://exa.ai", "Research", "Free", 59, 53, "Exa helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#9d6ec6"],
+["Tavily", "https://tavily.com", "Research", "Freemium", 60, 66, "Tavily helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#c3c6df"],
+["Andi", "https://andisearch.com", "Research", "Freemium", 82, 57, "Andi helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#5f1d06"],
+["Genspark", "https://www.genspark.ai", "Research", "Freemium", 64, 36, "Genspark helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#b7282d"],
+["Brave Search", "https://search.brave.com", "Research", "Paid", 63, 40, "Brave Search helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#66c275"],
+["Kagi", "https://kagi.com", "Research", "Free", 88, 68, "Kagi helps search, analyze, summarize or organize information with AI.", "AI search and analysis|Summaries and insights|Research workflows", "#45b475"],
+["Figma", "https://www.figma.com", "Design", "Free", 55, 50, "Figma uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#a86fc3"],
+["Framer", "https://www.framer.com", "Design", "Paid", 70, 70, "Framer uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#0df10f"],
+["Uizard", "https://uizard.io", "Design", "Freemium", 91, 39, "Uizard uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#7c2f40"],
+["Galileo AI", "https://www.usegalileo.ai", "Design", "Paid", 68, 49, "Galileo AI uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#fe39ba"],
+["Relume", "https://www.relume.io", "Design", "Paid", 60, 46, "Relume uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#5e767b"],
+["Khroma", "https://www.khroma.co", "Design", "Paid", 91, 46, "Khroma uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#835193"],
+["Diagram", "https://diagram.com", "Design", "Paid", 92, 55, "Diagram uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#e410e8"],
+["Adobe Express", "https://www.adobe.com/express", "Design", "Freemium", 74, 42, "Adobe Express uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#f21a87"],
+["Visme", "https://www.visme.co", "Design", "Freemium", 83, 54, "Visme uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#2f456b"],
+["Looka", "https://looka.com", "Design", "Paid", 70, 67, "Looka uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#d89dc4"],
+["Brandmark", "https://brandmark.io", "Design", "Paid", 90, 43, "Brandmark uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#b2af3c"],
+["LogoAI", "https://www.logoai.com", "Design", "Freemium", 75, 60, "LogoAI uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#75fe11"],
+["VistaCreate", "https://create.vista.com", "Design", "Freemium", 86, 63, "VistaCreate uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#0106a8"],
+["Creately", "https://creately.com", "Design", "Free", 58, 38, "Creately uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#b4d6e3"],
+["Milanote", "https://milanote.com", "Design", "Paid", 88, 58, "Milanote uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#bccf27"],
+["FigJam", "https://www.figma.com/figjam", "Design", "Paid", 56, 49, "FigJam uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#9bda76"],
+["Webflow", "https://webflow.com", "Design", "Paid", 94, 64, "Webflow uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#68578d"],
+["Wix AI", "https://www.wix.com/ai-website-builder", "Design", "Free", 62, 50, "Wix AI uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#4ffa13"],
+["Relume Library", "https://www.relume.io", "Design", "Paid", 82, 37, "Relume Library uses AI to speed up design, branding, websites or visual creation.", "AI-assisted creation|Templates and visual workflows|Design productivity", "#b2710e"],
+["Khanmigo", "https://www.khanmigo.ai", "Education", "Paid", 81, 37, "Khanmigo uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#f7ab9a"],
+["Duolingo Max", "https://www.duolingo.com/max", "Education", "Free", 78, 68, "Duolingo Max uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#538f95"],
+["Quizlet", "https://quizlet.com", "Education", "Paid", 85, 52, "Quizlet uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#b13eb1"],
+["Brainly", "https://brainly.com", "Education", "Free", 96, 41, "Brainly uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#a0d47e"],
+["Mindgrasp", "https://mindgrasp.ai", "Education", "Free", 58, 53, "Mindgrasp uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#4f50ea"],
+["Speak", "https://www.speak.com", "Education", "Paid", 78, 46, "Speak uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#8b1e2b"],
+["ELSA Speak", "https://elsaspeak.com", "Education", "Paid", 92, 46, "ELSA Speak uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#1c866b"],
+["Studocu", "https://www.studocu.com", "Education", "Paid", 97, 67, "Studocu uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#5847b0"],
+["Photomath", "https://photomath.com", "Education", "Paid", 66, 70, "Photomath uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#8b72c7"],
+["WolframAlpha", "https://www.wolframalpha.com", "Education", "Freemium", 74, 66, "WolframAlpha uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#6434ef"],
+["Symbolab", "https://www.symbolab.com", "Education", "Paid", 87, 46, "Symbolab uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#2af0d7"],
+["Mathway", "https://www.mathway.com", "Education", "Freemium", 62, 51, "Mathway uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#11c1c4"],
+["StudyFetch", "https://www.studyfetch.com", "Education", "Freemium", 67, 54, "StudyFetch uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#dc4353"],
+["Knowt", "https://knowt.com", "Education", "Freemium", 64, 66, "Knowt uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#7d90e3"],
+["Gizmo", "https://gizmo.ai", "Education", "Paid", 85, 64, "Gizmo uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#807ff5"],
+["MagicSchool", "https://www.magicschool.ai", "Education", "Paid", 95, 64, "MagicSchool uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#119c45"],
+["SchoolAI", "https://schoolai.com", "Education", "Freemium", 79, 66, "SchoolAI uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#5cf2b7"],
+["Brisk Teaching", "https://www.briskteaching.com", "Education", "Free", 64, 47, "Brisk Teaching uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#b7e67c"],
+["Diffit", "https://www.diffit.me", "Education", "Paid", 75, 40, "Diffit uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#40c51d"],
+["Curipod", "https://curipod.com", "Education", "Paid", 60, 43, "Curipod uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#4ad200"],
+["DeepL", "https://www.deepl.com", "Education", "Freemium", 86, 63, "DeepL uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#086b54"],
+["Google Translate", "https://translate.google.com", "Education", "Free", 74, 62, "Google Translate uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#520833"],
+["Papago", "https://papago.naver.com", "Education", "Freemium", 70, 57, "Papago uses AI for learning, tutoring, study, teaching or language practice.", "AI learning assistance|Personalized explanations|Study or teaching workflows", "#566dbe"],
+["HubSpot AI", "https://www.hubspot.com/artificial-intelligence", "Marketing", "Freemium", 77, 48, "HubSpot AI helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#95e105"],
+["Surfer SEO", "https://surferseo.com", "Marketing", "Freemium", 79, 60, "Surfer SEO helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#afd431"],
+["Semrush", "https://www.semrush.com", "Marketing", "Freemium", 60, 54, "Semrush helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#c835ab"],
+["Ahrefs", "https://ahrefs.com", "Marketing", "Freemium", 90, 66, "Ahrefs helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#693847"],
+["Ubersuggest", "https://neilpatel.com/ubersuggest", "Marketing", "Freemium", 56, 39, "Ubersuggest helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#510e5c"],
+["MarketMuse", "https://www.marketmuse.com", "Marketing", "Paid", 91, 70, "MarketMuse helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#143f27"],
+["AdCreative.ai", "https://www.adcreative.ai", "Marketing", "Paid", 63, 40, "AdCreative.ai helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#872ac5"],
+["Predis.ai", "https://predis.ai", "Marketing", "Paid", 66, 43, "Predis.ai helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#920e64"],
+["Buffer", "https://buffer.com", "Marketing", "Freemium", 78, 39, "Buffer helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#7e62bc"],
+["Hootsuite", "https://www.hootsuite.com", "Marketing", "Free", 96, 47, "Hootsuite helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#3ac4f4"],
+["Munch", "https://www.getmunch.com", "Marketing", "Free", 61, 68, "Munch helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#608b1d"],
+["Taplio", "https://taplio.com", "Marketing", "Freemium", 83, 60, "Taplio helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#7187e9"],
+["Typeface", "https://www.typeface.ai", "Marketing", "Free", 96, 59, "Typeface helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#b5a0c4"],
+["Manychat", "https://manychat.com", "Marketing", "Free", 86, 53, "Manychat helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#11feaa"],
+["Clay", "https://www.clay.com", "Marketing", "Paid", 84, 55, "Clay helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#ed5eac"],
+["Apollo.io", "https://www.apollo.io", "Marketing", "Freemium", 83, 57, "Apollo.io helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#18ba2e"],
+["Instantly", "https://instantly.ai", "Marketing", "Freemium", 75, 39, "Instantly helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#d99330"],
+["Smartlead", "https://smartlead.ai", "Marketing", "Free", 95, 44, "Smartlead helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#a20585"],
+["Postwise", "https://postwise.ai", "Marketing", "Paid", 72, 52, "Postwise helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#081a25"],
+["Tweet Hunter", "https://tweethunter.io", "Marketing", "Freemium", 55, 51, "Tweet Hunter helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#9cc3c4"],
+["Sprout Social", "https://sproutsocial.com", "Marketing", "Paid", 84, 46, "Sprout Social helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#d4edab"],
+["SE Ranking", "https://seranking.com", "Marketing", "Paid", 76, 64, "SE Ranking helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#6d92dd"],
+["Brand24", "https://brand24.com", "Marketing", "Paid", 83, 55, "Brand24 helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#872900"],
+["Hypefury", "https://hypefury.com", "Marketing", "Freemium", 56, 63, "Hypefury helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#3b3f14"],
+["Flick", "https://www.flick.social", "Marketing", "Freemium", 57, 57, "Flick helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#a718f2"],
+["Ocoya", "https://www.ocoya.com", "Marketing", "Freemium", 90, 63, "Ocoya helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#12f79c"],
+["FeedHive", "https://feedhive.com", "Marketing", "Paid", 63, 37, "FeedHive helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#02aa52"],
+["Later", "https://later.com", "Marketing", "Paid", 82, 37, "Later helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#61057a"],
+["Metricool", "https://metricool.com", "Marketing", "Free", 80, 35, "Metricool helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#f16a04"],
+["Shopify Magic", "https://www.shopify.com/magic", "Marketing", "Freemium", 73, 69, "Shopify Magic helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#a50232"],
+["Shopify Sidekick", "https://www.shopify.com/sidekick", "Marketing", "Freemium", 62, 48, "Shopify Sidekick helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#1524fd"],
+["Framer AI", "https://www.framer.com/ai", "Marketing", "Freemium", 88, 45, "Framer AI helps create, automate or optimize marketing and growth workflows with AI.", "AI content creation|Marketing automation|Growth workflows", "#2c20de"],
+["Meshy", "https://www.meshy.ai", "3D & Motion", "Free", 55, 47, "Meshy uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#3caa64"],
+["Tripo3D", "https://www.tripo3d.ai", "3D & Motion", "Free", 69, 41, "Tripo3D uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#28b37e"],
+["Hyper3D Rodin", "https://hyper3d.ai", "3D & Motion", "Paid", 81, 52, "Hyper3D Rodin uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#bfda55"],
+["Move AI", "https://www.move.ai", "3D & Motion", "Paid", 90, 55, "Move AI uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#0795b0"],
+["Wonder Studio", "https://wonderdynamics.com", "3D & Motion", "Free", 57, 41, "Wonder Studio uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#d2908a"],
+["LTX Studio", "https://ltx.studio", "3D & Motion", "Free", 86, 53, "LTX Studio uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#67015e"],
+["Sloyd", "https://www.sloyd.ai", "3D & Motion", "Freemium", 81, 63, "Sloyd uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#9f1a2c"],
+["Kaedim", "https://www.kaedim3d.com", "3D & Motion", "Paid", 96, 43, "Kaedim uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#3e2f10"],
+["Alpha3D", "https://www.alpha3d.io", "3D & Motion", "Paid", 75, 70, "Alpha3D uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#5ad7db"],
+["Inworld AI", "https://inworld.ai", "3D & Motion", "Paid", 75, 52, "Inworld AI uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#b66891"],
+["Plask", "https://plask.ai", "3D & Motion", "Freemium", 81, 54, "Plask uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#01a737"],
+["DeepMotion", "https://www.deepmotion.com", "3D & Motion", "Paid", 82, 70, "DeepMotion uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#e9bf4f"],
+["Anything World", "https://anything.world", "3D & Motion", "Freemium", 55, 69, "Anything World uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#b3fede"],
+["Fomrix", "https://fomrix.com", "3D & Motion", "Freemium", 90, 51, "Fomrix uses AI to create, animate or work with 3D assets and motion.", "3D asset generation|AI animation or motion|Creative production workflows", "#e42ac4"]
+];
+var CATS=[["AI Writing","✍️"],["Image Generation","🎨"],["Video","🎬"],["Audio","🎧"],["Productivity","⚡"],["Coding","💻"],["Marketing","📣"],["Education","🎓"],["Business","💼"],["Research","🔬"],["Chatbots","💬"],["Design","🖌️"],["3D & Motion","🧊"]];
+var T=D.map(function(r){return{name:r[0],slug:r[0].toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/-$/,""),url:r[1],cat:r[2],price:r[3],pop:r[4],added:r[5],desc:r[6],feats:r[7].split("|"),color:r[8]}});
+var $=function(id){return document.getElementById(id)};
+var S={q:"",cat:"",price:"",sort:"pop"};
+
+function logo(t,lg){return '<div class="logo'+(lg?' lg':'')+'" style="background:linear-gradient(135deg,'+t.color+','+t.color+'cc)" aria-hidden="true">'+t.name[0]+'</div>'}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+function renderCats(){
+  $("cats").innerHTML=CATS.map(function(c){return '<button class="cat" data-c="'+c[0]+'" aria-pressed="'+(S.cat===c[0])+'"><span class="e">'+c[1]+'</span><b>'+c[0]+'</b></button>'}).join("");
+  $("fcat").innerHTML='<option value="">All categories</option>'+CATS.map(function(c){return '<option'+(S.cat===c[0]?' selected':'')+'>'+c[0]+'</option>'}).join("");
+}
+function match(t){
+  var q=S.q.trim().toLowerCase();
+  if(S.cat&&t.cat!==S.cat)return false;
+  if(S.price&&t.price!==S.price)return false;
+  if(!q)return true;
+  var hay=(t.name+" "+t.cat+" "+t.price+" "+t.desc+" "+t.feats.join(" ")).toLowerCase();
+  return q.split(/\s+/).every(function(w){return hay.indexOf(w)>-1});
+}
+function renderGrid(){
+  var L=T.filter(match);
+  L.sort(function(a,b){return S.sort==="az"?a.name.localeCompare(b.name):S.sort==="new"?b.added-a.added:b.pop-a.pop});
+  $("count").textContent=L.length+(L.length===1?" tool":" tools");
+  $("gridTitle").textContent=S.cat||(S.q?"Search results":"All tools");
+  $("grid").innerHTML=L.length?L.map(function(t){
+    return '<article class="card">'+
+      '<div class="row">'+logo(t)+'<div><h3><a href="#/tool/'+t.slug+'">'+esc(t.name)+'</a></h3><small>'+t.cat+'</small></div></div>'+
+      '<p>'+esc(t.desc)+'</p>'+
+      '<div class="tags"><span class="tag '+t.price+'">'+t.price+'</span><span class="tag">'+t.cat+'</span></div>'+
+      '<div class="actions"><a class="btn primary" href="'+t.url+'" target="_blank" rel="noopener noreferrer">Visit tool</a><a class="btn" href="#/tool/'+t.slug+'">Details</a></div>'+
+    '</article>'}).join(""):'<div class="empty"><h3>No tools match yet</h3><p>Try a different word, or clear the filters.</p><button class="btn" id="clear">Clear filters</button></div>';
+}
+function renderAll(){renderCats();renderGrid()}
+
+function renderDetail(slug){
+  var t=T.filter(function(x){return x.slug===slug})[0];
+  if(!t){location.hash="#/";return}
+  var rel=T.filter(function(x){return x.cat===t.cat&&x!==t}).slice(0,3);
+  $("detail").innerHTML='<a class="back" href="#/">← All tools</a><div class="d-box">'+
+    '<div class="d-head">'+logo(t,1)+'<div><h1>'+esc(t.name)+'</h1><div class="d-meta"><span class="tag">'+t.cat+'</span><span class="tag '+t.price+'">'+t.price+'</span></div></div></div>'+
+    '<p>'+esc(t.desc)+'</p><h2 style="font-size:1.25rem">Key features</h2><ul class="feat">'+t.feats.map(function(f){return '<li>'+esc(f)+'</li>'}).join("")+'</ul>'+
+    '<a class="btn primary big" href="'+t.url+'" target="_blank" rel="noopener noreferrer">Visit '+esc(t.name)+'</a></div>'+
+    (rel.length?'<section><div class="sec-h"><h2>More in '+t.cat+'</h2></div><div class="grid">'+rel.map(function(r){return '<article class="card"><div class="row">'+logo(r)+'<div><h3><a href="#/tool/'+r.slug+'">'+esc(r.name)+'</a></h3><small>'+r.price+'</small></div></div><p>'+esc(r.desc)+'</p></article>'}).join("")+'</div></section>':"");
+  document.title=t.name+" | Toolshelf";
+}
+function route(){
+  var m=location.hash.match(/^#\/tool\/(.+)$/);
+  $("home").classList.toggle("hide",!!m);
+  $("detail").classList.toggle("hide",!m);
+  if(m){renderDetail(m[1]);window.scrollTo(0,0)}else document.title="Toolshelf: Discover the Best AI Tools";
+}
+
+function jump(){$("tools").scrollIntoView({behavior:"smooth"})}
+$("sform").addEventListener("submit",function(e){e.preventDefault();S.q=$("q").value;renderGrid();jump()});
+$("q").addEventListener("input",function(){S.q=this.value;renderGrid()});
+$("cats").addEventListener("click",function(e){var b=e.target.closest(".cat");if(!b)return;S.cat=S.cat===b.dataset.c?"":b.dataset.c;renderAll();jump()});
+$("fcat").addEventListener("change",function(){S.cat=this.value;renderAll()});
+$("fprice").addEventListener("change",function(){S.price=this.value;renderGrid()});
+$("fsort").addEventListener("change",function(){S.sort=this.value;renderGrid()});
+$("grid").addEventListener("click",function(e){if(e.target.id==="clear"){S.q=S.cat=S.price="";$("q").value="";$("fprice").value="";renderAll()}});
+$("hints").innerHTML=["image generator","write blog posts","transcribe meetings","free tools","code assistant"].map(function(h){return '<button class="chip">'+h+'</button>'}).join("");
+$("hints").addEventListener("click",function(e){if(!e.target.classList.contains("chip"))return;var h=e.target.textContent;if(h==="free tools"){S.price="Free";S.q="";$("fprice").value="Free";$("q").value=""}else{S.q=h;$("q").value=h}renderGrid();jump()});
+window.addEventListener("hashchange",route);
+
+var root=document.documentElement;
+try{var saved=localStorage.getItem("ts-theme");if(saved)root.setAttribute("data-theme",saved)}catch(e){}
+$("theme").addEventListener("click",function(){
+  var dark=root.getAttribute("data-theme")?root.getAttribute("data-theme")==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  var next=dark?"light":"dark";root.setAttribute("data-theme",next);
+  try{localStorage.setItem("ts-theme",next)}catch(e){}
+});
+renderAll();route();
+</script>
+</body>
+</html>
